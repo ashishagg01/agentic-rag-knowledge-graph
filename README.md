@@ -67,6 +67,44 @@ You have a couple easy options for setting up Neo4j:
 3. Start the DBMS and set a password
 4. Note the connection details (URI, username, password)
 
+#### Option C: Using Neo4j Docker image
+🛠 Step 1: Install Docker Desktop
+
+Go to: Docker Desktop for Mac (Apple Silicon)
+
+Download the .dmg file and install it.
+
+Open Docker Desktop.app → let it initialize (you should see the whale 🐳 icon in your menu bar).
+
+🛠 Step 2: Verify installation
+
+In a new terminal (zsh):
+
+docker --version
+
+It should return something like:
+
+Docker version 27.1.1, build a1b5d6e
+
+🛠 Step 3: Run Neo4j
+
+Once Docker is running, retry:
+
+docker rm -f neo4j-agentic
+
+docker run \
+  --name neo4j-agentic \
+  -p 7474:7474 -p 7687:7687 \
+  -e NEO4J_AUTH=neo4j/test1234 \
+  neo4j:5.25
+
+
+UI → http://localhost:7474
+
+Bolt (for Graphiti) → bolt://localhost:7687
+
+User/pass → neo4j / test1234
+
 ### 5. Configure environment variables
 
 Create a `.env` file in the project root:
